@@ -9,7 +9,7 @@ export default function PrivacyPage() {
                 Your data is stored securely and used only for app functionality, such as authentication and displaying your profile. You can request deletion of your account and data at any time by contacting us.
             </p>
             <p>
-                For privacy questions, email <a href="maximilian.zhu@loewenrot.de" className="underline text-green-600 dark:text-green-400">privacy@challengechain.app</a>.
+                For privacy questions, email <a href="maximilian.zhu@loewenrot.de" className="underline text-green-600 dark:text-green-400">maximilian.zhu@loewenrot.de</a>.
             </p>
         </main>
     );
