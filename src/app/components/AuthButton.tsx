@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import { auth } from "../../lib/firebase";
 import {
     GoogleAuthProvider,
-    GithubAuthProvider, // <-- add this
+    GithubAuthProvider,
+    TwitterAuthProvider, // <-- add this
     signInWithPopup,
     signOut,
     onAuthStateChanged,
@@ -62,6 +63,17 @@ export default function AuthButton() {
         setError(null);
         try {
             const provider = new GithubAuthProvider();
+            await signInWithPopup(auth, provider);
+            // Success handled by onAuthStateChanged
+        } catch (e: any) {
+            setError(e.message);
+        }
+    };
+
+    const handleTwitter = async () => {
+        setError(null);
+        try {
+            const provider = new TwitterAuthProvider();
             await signInWithPopup(auth, provider);
             // Success handled by onAuthStateChanged
         } catch (e: any) {
@@ -205,7 +217,7 @@ export default function AuthButton() {
                         </button>
                         <button
                             onClick={handleGithub}
-                            className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 font-semibold text-base transition
+                            className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 font-semibold text-base transition mb-2
                 ${isDark
                                     ? "bg-gray-800 text-white hover:bg-gray-700"
                                     : "bg-gray-900 text-white hover:bg-gray-800"
@@ -215,6 +227,19 @@ export default function AuthButton() {
                                 <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.79 1.08.79 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z" />
                             </svg>
                             Sign in with GitHub
+                        </button>
+                        <button
+                            onClick={handleTwitter}
+                            className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 font-semibold text-base transition
+                ${isDark
+                                    ? "bg-[#1da1f2] text-white hover:bg-[#0d8ddb]"
+                                    : "bg-[#1da1f2] text-white hover:bg-[#0d8ddb]"
+                                }`}
+                        >
+                            <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+                                <path d="M22.46 5.924c-.793.352-1.645.59-2.538.698a4.48 4.48 0 0 0 1.963-2.476 8.94 8.94 0 0 1-2.828 1.082 4.47 4.47 0 0 0-7.617 4.075A12.7 12.7 0 0 1 3.112 4.89a4.47 4.47 0 0 0 1.384 5.963 4.43 4.43 0 0 1-2.025-.56v.057a4.47 4.47 0 0 0 3.584 4.382 4.48 4.48 0 0 1-2.02.077 4.47 4.47 0 0 0 4.175 3.104A8.97 8.97 0 0 1 2 19.54a12.67 12.67 0 0 0 6.88 2.017c8.26 0 12.78-6.84 12.78-12.77 0-.195-.004-.39-.013-.583A9.1 9.1 0 0 0 24 4.59a8.93 8.93 0 0 1-2.54.697z" />
+                            </svg>
+                            Sign in with Twitter
                         </button>
                         {error && <div className="text-red-500 text-xs mt-4 text-center">{error}</div>}
                     </div>
