@@ -29,7 +29,6 @@ export default function Home() {
     return null;
   }
 
-  // Main app for logged-in users
   const challenges = [
     {
       id: "1",
@@ -46,38 +45,36 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-8">
-      <header className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-6">
-        <div className="flex items-center gap-3">
-          <span className="text-4xl">⛵</span>
-          <h1 className="text-4xl font-extrabold tracking-tight text-green-600 dark:text-green-400">
-            ChallengeChain
-          </h1>
-        </div>
-        <div className="flex gap-3 items-center w-full sm:w-auto justify-end">
-          <Link
-            href="/create"
-            className="bg-green-500 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-600 transition"
-          >
-            + Create Challenge
-          </Link>
-          <AuthButton />
-          <Link
-            href="/profile"
-            className="ml-2 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-          >
-            Profile
-          </Link>
-        </div>
-      </header>
+    <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 flex flex-col gap-8">
+      {/* Main Feed & Challenges */}
+      <section className="flex-1 flex flex-col gap-8">
+        {/* Challenges */}
+        <header className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-6">
+          <div className="flex items-center gap-3">
+            <span className="text-4xl">⛵</span>
+            <h1 className="text-4xl font-extrabold tracking-tight text-green-600 dark:text-green-400">
+              ChallengeChain
+            </h1>
+          </div>
+          <div className="flex gap-3 items-center w-full sm:w-auto justify-end">
+            <Link
+              href="/create"
+              className="bg-green-500 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-green-600 dark:bg-green-700 dark:hover:bg-green-600 transition"
+            >
+              + Create Challenge
+            </Link>
+            <AuthButton />
 
-      <section>
-        <h2 className="sr-only">Active Challenges</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {challenges.map((challenge) => (
-            <ChallengeCard key={challenge.id} challenge={challenge} />
-          ))}
-        </div>
+          </div>
+        </header>
+        <section>
+          <h2 className="sr-only">Active Challenges</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {challenges.map((challenge) => (
+              <ChallengeCard key={challenge.id} challenge={challenge} />
+            ))}
+          </div>
+        </section>
       </section>
     </main>
   );
