@@ -1,6 +1,5 @@
 # Pass It On: Shipwrecked
 
-A collaborative web-based game where players work together to survive on a deserted island after a shipwreck.
 
 ## Features
 
